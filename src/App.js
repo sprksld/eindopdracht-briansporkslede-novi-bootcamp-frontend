@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/footer/Footer";
 import {AuthContext} from "./context/AuthContext";
 import SignOut from "./pages/SignOut";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
     const {isAuth} = useContext(AuthContext);
@@ -18,6 +19,7 @@ function App() {
                 <div className="content">
                     <Routes>
                         <Route exact path="/" element={<Home/>}/>
+                        <Route exact path="/dashboard" element={<Dashboard/>}/>
                         <Route exact path="/inloggen" element={<SignIn/>}/>
                         <Route exact path="/uitloggen" element={<SignOut/>}/>
                     </Routes>

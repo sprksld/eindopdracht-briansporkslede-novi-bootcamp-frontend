@@ -1,17 +1,27 @@
-import React from 'react';
-import {Link, NavLink} from "react-router-dom";
+import React, {useContext} from 'react';
+import {Link, NavLink, useNavigate} from "react-router-dom";
 import logo from "../logo.svg";
+import {AuthContext} from "../context/AuthContext";
 
 function NavBar() {
+    const {isAuth, user, logout} = useContext(AuthContext);
+    const navigate = useNavigate();
+
     return (
         <nav>
             <Link to="/">
                 <span><img src={logo} alt="logo" width="40"/></span>
             </Link>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/dashboard">Dashboard</NavLink>
-            <NavLink to="/inloggen">Inloggen</NavLink>
-            <NavLink to="/uitloggen">Uitloggen</NavLink>
+
+            <div>
+                {!isAuth && <button type="button" onClick={() => navigate('/inloggen')}>Log in</button> }
+                {isAuth &&
+                    <>
+                        <button type="button" onClick={() => navigate('/dashboard')}>Dashboard</button>
+                        <button type="button" onClick={logout}>Uitloggen</button>
+                    </>
+                }
+            </div>
         </nav>
     );
 }
