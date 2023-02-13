@@ -3,7 +3,7 @@ import React, {useContext} from "react";
 import {Routes, Route, Navigate} from "react-router-dom";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/nav/NavBar";
 import Footer from "./components/footer/Footer";
 import {AuthContext} from "./context/AuthContext";
 import Dashboard from "./pages/Dashboard";
