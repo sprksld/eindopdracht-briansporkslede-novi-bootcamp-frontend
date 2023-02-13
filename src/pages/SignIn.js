@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import axios from "axios";
 import path2url from "../helpers/path2url";
+import {AuthContext} from "../context/AuthContext";
 
 function SignIn() {
+    const {auth, user, login} = useContext(AuthContext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, toggleError] = useState(false);
@@ -20,6 +22,7 @@ function SignIn() {
                 password: password
             });
             console.log(response.data);
+            login(response.data.jwt);
         } catch (e) {
             toggleError(true);
             setErrorMessage(e.message);

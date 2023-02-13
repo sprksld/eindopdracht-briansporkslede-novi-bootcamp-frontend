@@ -12,7 +12,6 @@ function AuthContextProvider({children}) {
         isAuth: false,
         user: null,
         status: "pending",
-        bannerUrl: "",
     });
     const navigate = useNavigate();
 
@@ -71,8 +70,6 @@ function AuthContextProvider({children}) {
                     username: response.data.username,
                     authorities: response.data.authorities,
                     email: response.data.email,
-                    student_id: (response.data.student != null) ? response.data.student.id : null,
-                    teacher_id: (response.data.mentor) ? response.data.mentor.id : null,
                     isPlanner: !!response.data.authorities.find((e) => e.authority === "PLANNER"),
                     isMentor: !!response.data.authorities.find((e) => e.authority === "MENTOR"),
                     isStudent: !!response.data.authorities.find((e) => e.authority === "STUDENT"),
@@ -101,7 +98,6 @@ function AuthContextProvider({children}) {
         login: login,
         logout: logout,
         status: auth.status,
-        bannerUrl: ""
     }
 
     return (
