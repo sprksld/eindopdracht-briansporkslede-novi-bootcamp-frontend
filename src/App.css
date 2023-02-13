@@ -1,3 +1,66 @@
+
+
+
+
+body {
+  background-color: darkgrey;
+}
+
+nav {
+  background-color: black;
+  color: white;
+}
+
+
+nav {
+  display: flex;
+  padding: 16px 32px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 1360px;
+  margin: auto;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 16px 32px;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.blue {
+  color: blue;
+}
+
+.purple {
+  color: purple;
+}
+
+.orange {
+  color: darkorange;
+}
+
+
+
+
+
+
+
+
 .App {
   text-align: center;
 }

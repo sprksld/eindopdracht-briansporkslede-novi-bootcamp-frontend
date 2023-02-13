@@ -6,7 +6,6 @@ import Home from "./pages/Home";
 function App() {
   return (
       <>
-          It Works!
           <Routes>
               <Route exact path="/" element={<Home/>} />
           </Routes>

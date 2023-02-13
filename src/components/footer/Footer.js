@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Footer(props) {
+function Footer() {
     return (
-        <div></div>
+        <footer>&copy; 2023 Brian Sporkslede - Eindopdracht Full Stack Developer, Novi Hogeschool</footer>
     );
 }
 
