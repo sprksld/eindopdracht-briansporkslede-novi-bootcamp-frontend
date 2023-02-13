@@ -1,14 +1,42 @@
 
 
 
+:root {
+  /* "borrowed" from magister */
+
+  --chrome-background: #fff;
+  --primary-background: #1f97f9;
+  --secondary-background: #0683ea;
+  --background-1: #0099f6;
+  --background-2: #fff;
+  --background-3: #ccc;
+  --background-4: #434343;
+  --background-5: #fafafa;
+  --background-6: #333;
+  --background-7: #f2f2f2;
+  --background-8: #ccc;
+  --background-9: transparent;
+  --background-10: #005c86;
+  --background-11: #e1f4fd;
+  --background-12: #bee1fd;
+
+  --primary-text-color: #1f97f9;
+  --secondary-text-color: #000;
+  --tertiary-text-color: #007ecc;
+  --quaternary-text-color: #04579a;
+
+  /* added by me */
+  --orange: hsl(30,100%,51%);
+}
 
 body {
-  background-color: darkgrey;
+  background-color: var(--background-1);
+  color: var(--secondary-text-color);
 }
 
 nav {
-  background-color: black;
-  color: white;
+  background-color: var(--background-6);
+  color: var(--background-2);
 }
 
 
@@ -33,6 +61,11 @@ footer {
   justify-content: center;
   margin: 16px 32px;
 }
+
+label {
+  display: block;
+}
+
 
 .red {
   color: red;
@@ -90,6 +123,11 @@ footer {
 .App-link {
   color: #61dafb;
 }
+
+
+
+
+
 
 @keyframes App-logo-spin {
   from {
