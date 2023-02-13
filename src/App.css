@@ -30,21 +30,8 @@
 }
 
 body {
-  background-color: var(--background-1);
+  background-color: var(--background-3);
   color: var(--secondary-text-color);
-}
-
-nav {
-  background-color: var(--background-6);
-  color: var(--background-2);
-}
-
-
-nav {
-  display: flex;
-  padding: 16px 32px;
-  align-items: center;
-  justify-content: space-between;
 }
 
 main {
@@ -87,7 +74,26 @@ label {
   color: darkorange;
 }
 
+button {
+  background-color: var(--background-10);
+  color: var(--background-2);
+}
 
+button {
+  border-radius: 4px;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+}
+
+
+button + button {
+  margin-left: 8px;
+}
+
+button:hover {
+  cursor: pointer;
+}
 
 
 

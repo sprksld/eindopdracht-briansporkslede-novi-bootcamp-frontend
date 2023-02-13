@@ -1,4 +1,4 @@
-// this helper tells whether or not the jwt parameter is still valid according to the time of the host it's on
+// this helper tells whether the jwt parameter is still valid according to the time of the host it's on
 
 import jwt_decode from "jwt-decode";
 

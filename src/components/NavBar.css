@@ -1,0 +1,23 @@
+
+nav {
+    background-color: var(--background-1);
+    color: var(--background-2);
+}
+
+nav a,
+nav a:visited,
+nav a:active {
+    color: var(--background-2);
+}
+
+nav button {
+    background-color: var(--background-10);
+    color: var(--background-2);
+}
+
+nav {
+    display: flex;
+    padding: 16px 32px;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -18,7 +18,7 @@ function AuthContextProvider({children}) {
     useEffect(() => {
         const storedToken = localStorage.getItem("token");
         const decodedToken = (storedToken) ? jwt_decode(storedToken) : null;
-        if (storedToken && isValidJwtToken( storedToken ) ) {
+        if (storedToken && isValidJwtToken(storedToken)) {
             console.log("user still logged in");
             // console.log(decodedToken.exp);
             void fetchUserData(storedToken, decodedToken.sub);
@@ -84,7 +84,7 @@ function AuthContextProvider({children}) {
             }
         } catch (e) {
             console.error(e);
-            setAuth( {
+            setAuth({
                 ...auth
                 , status: "done"
             });
@@ -102,7 +102,7 @@ function AuthContextProvider({children}) {
 
     return (
         <AuthContext.Provider value={contextData}>
-            { auth.status === 'done' ? children : <p>Loading ...</p>}
+            {auth.status === 'done' ? children : <p>Loading ...</p>}
         </AuthContext.Provider>
     );
 }

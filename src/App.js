@@ -1,12 +1,11 @@
 import "./App.css";
 import React, {useContext} from "react";
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route, Navigate} from "react-router-dom";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import NavBar from "./components/NavBar";
 import Footer from "./components/footer/Footer";
 import {AuthContext} from "./context/AuthContext";
-import SignOut from "./pages/SignOut";
 import Dashboard from "./pages/Dashboard";
 
 function App() {
@@ -19,9 +18,9 @@ function App() {
                 <div className="content">
                     <Routes>
                         <Route exact path="/" element={<Home/>}/>
-                        <Route exact path="/dashboard" element={<Dashboard/>}/>
                         <Route exact path="/inloggen" element={<SignIn/>}/>
-                        <Route exact path="/uitloggen" element={<SignOut/>}/>
+                        <Route exact path="/dashboard" element={<Dashboard/>}/>
+                        {/*<Route exact path="/dashboard" element={isAuth ? <Dashboard/> : <Navigate to="/inloggen"/>}/>*/}
                     </Routes>
                 </div>
             </main>
