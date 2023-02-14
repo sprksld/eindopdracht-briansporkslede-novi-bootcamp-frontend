@@ -5,20 +5,23 @@ import sqlDateTimeToLongDate from "../../helpers/sqlDateTimeToLongDate";
 function WorkshopsToChoose() {
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
-    const [data, setData] = useState([]);
+    const [workshops, setWorkshops] = useState([]);
 
     useEffect(() => {
-        void goFetch("/workshops/upcoming", setData, toggleLoading, toggleError);
+        void goFetch("/workshops/upcoming", setWorkshops, toggleLoading, toggleError);
     }, []);
 
     return (
         <>
+            <h2>Keuze werktijd</h2>
+            <h4>uit deze workshops kun je kiezen</h4>
+
             {error && <span>Er is ging iets mis</span>}
             {!error &&
                 <>
                     {loading && <span>Aan het laden ...</span>}
 
-                    {Object.keys(data).length > 0 &&
+                    {Object.keys(workshops).length > 0 &&
                         <>
                             <table>
                                 <thead>
@@ -28,7 +31,7 @@ function WorkshopsToChoose() {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {Object.keys(data).length > 0 && data.map((w, n) => {
+                                {Object.keys(workshops).length > 0 && workshops.map((w, n) => {
                                     return (
                                         <tr key={n}>
                                             <td>

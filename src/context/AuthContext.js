@@ -75,6 +75,8 @@ function AuthContextProvider({children}) {
                     isStudent: !!response.data.authorities.find((e) => e.authority === "STUDENT"),
                     isTeacher: !!response.data.authorities.find((e) => e.authority === "TEACHER"),
                     fullname: (response.data.student) ? response.data.student.name : response.data.mentor.name,
+                    student_id: (response.data.student != null) ? response.data.student.id : null,
+                    teacher_id: (response.data.mentor) ? response.data.mentor.id : null,
                 }
                 , status: "done"
             });

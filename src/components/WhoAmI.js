@@ -18,10 +18,10 @@ function WhoAmI() {
 
     return (
         <>
-            {isMentor  && <h5>Ingelogd als <strong>Mentor  {fullname}</strong> &lt;{email}&gt;</h5>}
-            {isPlanner && <h5>Ingelogd als <strong>Planner {fullname}</strong> &lt;{email}&gt;</h5>}
-            {isStudent && <h5>Ingelogd als <strong>Student {fullname}</strong> &lt;{email}&gt;</h5>}
-            {isTeacher && <h5>Ingelogd als <strong>Teacher {fullname}</strong> &lt;{email}&gt;</h5>}
+            {isMentor  && <h4>Ingelogd als <strong>Mentor  {fullname}</strong> &lt;{email}&gt;</h4>}
+            {isPlanner && <h4>Ingelogd als <strong>Planner {fullname}</strong> &lt;{email}&gt;</h4>}
+            {isStudent && <h4>Ingelogd als <strong>Student {fullname}</strong> &lt;{email}&gt;</h4>}
+            {isTeacher && <h4>Ingelogd als <strong>Teacher {fullname}</strong> &lt;{email}&gt;</h4>}
         </>
     );
 }

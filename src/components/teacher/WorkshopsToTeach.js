@@ -5,10 +5,10 @@ import sqlDateTimeToLongDate from "../../helpers/sqlDateTimeToLongDate";
 function WorkshopsToTeach() {
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
-    const [data, setData] = useState([]);
+    const [workshops, setWorkshops] = useState([]);
 
     useEffect(() => {
-        void goFetch("/workshops/ihavetoteach", setData, toggleLoading, toggleError)
+        void goFetch("/workshops/ihavetoteach", setWorkshops, toggleLoading, toggleError)
     }, []);
 
     function handleListButton(e, id) {
@@ -30,6 +30,8 @@ function WorkshopsToTeach() {
         <>
             {!error &&
                 <>
+                    <h2>Te geven workshops</h2>
+
                     <table>
                         <caption>overzicht van workshops die ik zelf geef</caption>
                         <thead>
@@ -42,7 +44,7 @@ function WorkshopsToTeach() {
                         </tr>
                         </thead>
                         <tbody>
-                        {Object.keys(data).length > 0 && data.map((w, n) => {
+                        {Object.keys(workshops).length > 0 && workshops.map((w, n) => {
                             return (
                                 <tr key={n}>
                                     <td>
@@ -52,9 +54,9 @@ function WorkshopsToTeach() {
                                     <td>{w.room}</td>
                                     <td>?</td>
                                     <td>
-                                        <button onClick={(e) => handleListButton(e, w.id)}>deelnemers</button>
-                                        <button onClick={(e) => handlePresenceButton(e, w.id)}>presentie</button>
-                                        <button onClick={(e) => handleFeedbackButton(e, w.id)}>feedback</button>
+                                        <button type="button" onClick={(e) => handleListButton(e, w.id)}>deelnemers</button>
+                                        <button type="button" onClick={(e) => handlePresenceButton(e, w.id)}>presentie</button>
+                                        <button type="button" onClick={(e) => handleFeedbackButton(e, w.id)}>feedback</button>
                                     </td>
                                 </tr>
                             )

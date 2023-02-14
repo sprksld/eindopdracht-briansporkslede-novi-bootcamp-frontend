@@ -1,145 +1,247 @@
-
-
+/* -------------------- COLORS ---------------------------------------------------------- */
 
 :root {
-  /* "borrowed" from magister */
+    /* "borrowed" from magister */
 
-  --chrome-background: #fff;
-  --primary-background: #1f97f9;
-  --secondary-background: #0683ea;
-  --background-1: #0099f6;
-  --background-2: #fff;
-  --background-3: #ccc;
-  --background-4: #434343;
-  --background-5: #fafafa;
-  --background-6: #333;
-  --background-7: #f2f2f2;
-  --background-8: #ccc;
-  --background-9: transparent;
-  --background-10: #005c86;
-  --background-11: #e1f4fd;
-  --background-12: #bee1fd;
+    --chrome-background: #fff;
+    --primary-background: #1f97f9;
+    --secondary-background: #0683ea;
+    --background-1: #0099f6;
+    --background-2: #fff;
+    --background-3: #ccc;
+    --background-4: #434343;
+    --background-5: #fafafa;
+    --background-6: #333;
+    --background-7: #f2f2f2;
+    --background-8: #ccc;
+    --background-9: transparent;
+    --background-10: #005c86;
+    --background-11: #e1f4fd;
+    --background-12: #bee1fd;
 
-  --primary-text-color: #1f97f9;
-  --secondary-text-color: #000;
-  --tertiary-text-color: #007ecc;
-  --quaternary-text-color: #04579a;
+    --primary-text-color: #1f97f9;
+    --secondary-text-color: #000;
+    --tertiary-text-color: #007ecc;
+    --quaternary-text-color: #04579a;
 
-  /* added by me */
-  --orange: hsl(30,100%,51%);
+    /* added by me */
+    --orange: hsl(30, 100%, 51%);   /* ff8205 */
+    --very-light-blue: #e6f3fe; /* from magister website */
 }
 
 body {
-  background-color: var(--background-3);
-  color: var(--secondary-text-color);
+    background-color: var(--background-3);
+    color: var(--secondary-text-color);
 }
 
-main {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  max-width: 1360px;
-  margin: auto;
+table {
+    background-color: var(--background-10);
+    color: var(--background-7);
 }
 
-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 16px 32px;
+tbody {
+    color: var(--secondary-text-color);
 }
 
-label {
-  display: block;
+tbody > tr {
+    /*background-color: var(--background-3);*/
+    color: var(--secondary-text-color);
 }
+
+tbody > tr:nth-child(odd) {
+    background-color: var(--background-1);
+}
+
+tbody > tr:nth-child(even) {
+    background-color: var(--background-12);
+}
+
+form {
+    background-color: var(--background-12);
+}
+
+form button {
+    background-color: var(--background-10);
+    color: var(--background-2);
+}
+
+
+
+
 
 
 .red {
-  color: red;
+    color: red;
 }
 
 .green {
-  color: green;
+    color: green;
 }
 
 .blue {
-  color: blue;
+    color: blue;
 }
 
 .purple {
-  color: purple;
+    color: purple;
 }
 
 .orange {
-  color: darkorange;
+    color: darkorange;
 }
 
 button {
-  background-color: var(--background-10);
-  color: var(--background-2);
+    background-color: var(--background-10);
+    color: var(--background-2);
+}
+
+/* -------------------- FONTS ----------------------------------------------------------- */
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Roboto', 'Open Sans', 'Roboto', 'Times New Roman', cursive;
 }
 
 button {
-  border-radius: 4px;
-  border: none;
-  padding: 8px 16px;
-  font-weight: bold;
+    font-weight: bold;
 }
 
+th {
+    text-align: left;
+}
+
+form label {
+    font-weight: bold;
+}
+
+/* -------------------- FLEX ------------------------------------------------------------ */
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 1360px;
+    margin: auto;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 16px 32px;
+}
+
+/* -------------------- SPACE ------------------------------------------------------------ */
+
+table {
+    padding: 4px;
+    border-radius: 16px 16px 0 0;
+    border: 0;
+    width: 100%;
+}
+
+th {
+    padding: 8px;
+}
+
+td {
+    padding: 8px;
+}
+
+tbody {
+    border: 0;
+}
+
+
+label {
+    display: block;
+}
+
+form label {
+    margin: 4px 0;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 4px 8px;
+    margin: 6px 0;
+}
+
+form select,
+form textarea {
+    width: 100%;
+    padding: 8px;
+}
+
+form button {
+    margin-top: 15px;
+}
+
+button {
+    border-radius: 4px;
+    border: none;
+    padding: 8px 16px;
+}
 
 button + button {
-  margin-left: 8px;
+    margin-left: 8px;
 }
 
 button:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
-
-
-
-
+/* -------------------- LEFTOVERS ------------------------------------------------------------ */
 
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
-
-
-
-
-
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

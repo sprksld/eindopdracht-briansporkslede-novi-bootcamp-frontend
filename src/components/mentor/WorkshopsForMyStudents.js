@@ -1,15 +1,15 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import goFetch from "../../helpers/goFetch";
 import sqlDateTimeToLongDate from "../../helpers/sqlDateTimeToLongDate";
 import sqlDateTimeToRelativeDeadline from "../../helpers/sqlDateTimeToRelativeDeadline";
 
-function WorkshopsToAnnounce() {
+function WorkshopsForMyStudents() {
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
-    const [data, setData] = useState([]);
+    const [workshops, setWorkshops] = useState([]);
 
     useEffect(() => {
-        void goFetch("/workshops/mystudentscanchoosefrom", setData, toggleLoading, toggleError);
+        void goFetch("/workshops/mystudentscanchoosefrom", setWorkshops, toggleLoading, toggleError);
     }, []);
 
     function handleDetailsButton(e, id) {
@@ -31,6 +31,8 @@ function WorkshopsToAnnounce() {
         <>
             {!error &&
                 <>
+                    <h2>Geplande workshops</h2>
+                    <h4>uit deze workshops kunnen jouw leerlingen kiezen</h4>
                     <table>
                         <thead>
                         <tr>
@@ -41,7 +43,7 @@ function WorkshopsToAnnounce() {
                         </tr>
                         </thead>
                         <tbody>
-                        {Object.keys(data).length > 0 && data.map((w) => {
+                        {Object.keys(workshops).length > 0 && workshops.map((w) => {
                             return (
                                 <tr key={w.id}>
                                     <td>
@@ -50,9 +52,9 @@ function WorkshopsToAnnounce() {
                                     <td>{sqlDateTimeToLongDate(w.dtStart)}</td>
                                     <td>{sqlDateTimeToRelativeDeadline(w.dtReservationsStart, w.dtReservationsEnd)}</td>
                                     <td>
-                                        <button onClick={(e) => handleDetailsButton(e, w.id)}>details</button>
-                                        <button onClick={(e) => handlePresenceButton(e, w.id)}>presentie</button>
-                                        <button onClick={(e) => handleFeedbackButton(e, w.id)}>feedback</button>
+                                        <button type="button" onClick={(e) => handleDetailsButton(e, w.id)}>details</button>
+                                        <button type="button" onClick={(e) => handlePresenceButton(e, w.id)}>presentie</button>
+                                        <button type="button" onClick={(e) => handleFeedbackButton(e, w.id)}>feedback</button>
                                     </td>
                                 </tr>
                             )
@@ -65,4 +67,4 @@ function WorkshopsToAnnounce() {
     );
 }
 
-export default WorkshopsToAnnounce;
+export default WorkshopsForMyStudents;
