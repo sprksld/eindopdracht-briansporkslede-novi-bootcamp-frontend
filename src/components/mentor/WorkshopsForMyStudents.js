@@ -29,9 +29,11 @@ function WorkshopsForMyStudents() {
 
     return (
         <>
+            <h2>Geplande workshops</h2>
+
+
             {!error &&
                 <>
-                    <h2>Geplande workshops</h2>
                     <h4>uit deze workshops kunnen jouw leerlingen kiezen</h4>
                     <table>
                         <thead>

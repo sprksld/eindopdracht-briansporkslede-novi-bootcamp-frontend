@@ -57,7 +57,8 @@ tbody > tr:nth-child(even) {
 }
 
 form {
-    background-color: var(--background-12);
+    /*background-color: var(--background-12);*/
+    /*color: var(--secondary-text-color);*/
 }
 
 form button {
@@ -65,10 +66,19 @@ form button {
     color: var(--background-2);
 }
 
+form.add-workshop > section,
+form.add-student > section,
+form.signin > section {
+    background-color: var(--background-12);
+}
 
+form.add-workshop {
+    /*background-color: inherit;*/
+}
 
-
-
+caption {
+    color: var(--secondary-text-color);
+}
 
 .red {
     color: red;
@@ -133,8 +143,8 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    max-width: 1360px;
-    margin: auto;
+    /*max-width: 2360px;*/
+    /*margin: auto;*/
 }
 
 footer {
@@ -144,7 +154,21 @@ footer {
     margin: 16px 32px;
 }
 
-/* -------------------- SPACE ------------------------------------------------------------ */
+/* -------------------- SPACING ------------------------------------------------------------ */
+
+/*
+h6 + h5, h6 + h4, h6 + h3, h6 + h2, h6 + h1,
+h5 + h4, h5 + h3, h5 + h2, h5 + h1,
+h4 + h3, h4  h2, h4 + h1,
+h3 + h2, h3 + h1,
+h2 + h1 {
+    margin-top: 5em;
+}
+*/
+
+h2 {
+    margin-top: 1.6em;
+}
 
 table {
     padding: 4px;
@@ -168,6 +192,84 @@ tbody {
 
 label {
     display: block;
+}
+
+
+section {
+    margin: 0 0 25px 0;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+
+    border-radius: 4px;
+    padding: 2em;
+    flex-basis: 27vw;
+}
+
+form, form > section {
+    border-radius: 16px;
+}
+
+form > section {
+    padding: 25px;
+}
+
+form label {
+    margin: 4px 0;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 4px 8px;
+    margin: 6px 0;
+}
+
+form select,
+form textarea {
+    width: 100%;
+    padding: 8px;
+}
+
+form button {
+    margin-top: 15px;
+}
+
+form.signin,
+form.add-student {
+    max-width: 400px;
+}
+
+form.signin > section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px;
+}
+
+form.add-workshop > section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /*max-width: 400px;*/
+    width: 100%;
+}
+
+form.add-workshop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+form section.submit-error {
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
 form label {
