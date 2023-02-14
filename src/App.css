@@ -76,6 +76,10 @@ form.add-workshop {
     /*background-color: inherit;*/
 }
 
+form section.submit-error {
+    background-color: var(--orange);
+}
+
 caption {
     color: var(--secondary-text-color);
 }
@@ -174,7 +178,8 @@ table {
     padding: 4px;
     border-radius: 16px 16px 0 0;
     border: 0;
-    width: 100%;
+    min-width: 50vw;
+    width: auto;
 }
 
 th {
@@ -189,6 +194,9 @@ tbody {
     border: 0;
 }
 
+td.growing-likes > button {
+    width: 9em;
+}
 
 label {
     display: block;

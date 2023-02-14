@@ -1,7 +1,7 @@
 import "./NavBar.css"
 import React, {useContext} from 'react';
 import {Link, NavLink, useNavigate} from "react-router-dom";
-import logo from "../../logo.svg";
+import logo from "../../assets/Layer 1.svg";
 import {AuthContext} from "../../context/AuthContext";
 
 function NavBar() {
@@ -11,7 +11,7 @@ function NavBar() {
     return (
         <nav>
             <Link to="/">
-                <span><img src={logo} alt="logo" width="40"/></span>
+                <span><img src={logo} alt="logo" /></span>
             </Link>
 
             <div>

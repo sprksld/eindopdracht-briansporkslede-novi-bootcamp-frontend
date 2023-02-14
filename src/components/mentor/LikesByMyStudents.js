@@ -13,21 +13,32 @@ function LikesByMyStudents() {
     return (
         <>
             <h2>Likes</h2>
-            <h4>deze workshops vinden jouw leerlingen leuk</h4>
-
-            {Object.keys(reservations).length <= 0 && <span>Er zijn nog geen likes gegeven door je mentorleerlingen</span>}
-            {Object.keys(reservations).length > 0 &&
-                <ul>
-                    { reservations.map((d) => {
-                            return (
-                                <li key={d.id}>
-                                    <strong>{d.student.name}</strong> heeft interesse
-                                    voor <strong>{d.workshop.title}</strong>
-                                </li>
-                            )
-                        }
-                    )}
-                </ul>
+            {error && <span>Er is een fout opgetreden.</span>}
+            {!error &&
+                <>
+                    {loading && <span>Aan het laden ...</span>}
+                    {!loading &&
+                        <>
+                            {Object.keys(reservations).length <= 0
+                                ? <span>Jouw leerlingen hebben nog geen likes gegeven.</span>
+                                : <span>Jouw leerlingen vinden deze workshops leuk.</span>
+                            }
+                            {Object.keys(reservations).length > 0 &&
+                                <ul>
+                                    {reservations.map((d) => {
+                                            return (
+                                                <li key={d.id}>
+                                                    <strong>{d.student.name}</strong> heeft interesse
+                                                    voor <strong>{d.workshop.title}</strong>
+                                                </li>
+                                            )
+                                        }
+                                    )}
+                                </ul>
+                            }
+                        </>
+                    }
+                </>
             }
         </>
     );

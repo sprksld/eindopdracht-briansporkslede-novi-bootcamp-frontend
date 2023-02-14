@@ -88,11 +88,10 @@ function AddWorkshop() {
     return (
         <>
             <h2>Toevoegen workshop</h2>
-            <p>vul alle velden in om een workshop toe te voegen</p>
-
             {(addSuccess === true) ?
-                <span>Workshop toegevoegd. Je kunt direct verder met de volgende workshop. Refresh de pagina om de nieuwe workshops
-                    te zien.</span> : <span>&nbsp;</span>}
+                <span>Workshop toegevoegd. Je kunt direct verder met de volgende workshop. Refresh de pagina om de nieuwe workshops.</span> :
+                <span>vul alle velden in om een workshop toe te voegen</span>
+            }
 
             <form onSubmit={submitHandler} className="add-workshop">
                 <section>

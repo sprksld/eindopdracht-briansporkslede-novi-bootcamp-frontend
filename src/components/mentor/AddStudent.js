@@ -30,14 +30,13 @@ function AddStudent() {
 
     return (
         <>
-            <h2>Student Toevoegen</h2>
-            <h4>vul alle velden in om een mentorleerling toe te voegen</h4>
+            <h2>Leerling toevoegen</h2>
+            {(addSuccess === true) ?
+                <span>Leerling toegevoegd. Ga verder of ververs de pagina.</span> :
+                <span>vul alle velden in om een leerling toe te voegen</span>
+            }
 
             <div className="page-container">
-                {(addSuccess === true) ?
-                    <span>Student toegevoegd. Je kunt direct verder met de volgende. Herlaad de pagina om alles te zien.</span> :
-                    <span>&nbsp;</span>}
-
                 <form onSubmit={addStudent} className="add-student">
                     <section>
                         <label htmlFor="student-name">

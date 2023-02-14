@@ -18,8 +18,10 @@ async function goFetch(endpoint, setData, toggleBusy, toggleError, afterFetch) {
             }
         });
         console.log(result.data);
-        setData(result.data);
-        if (typeof afterFetch === "function") afterFetch(result, setData);
+        if (typeof afterFetch === "function")
+            afterFetch(result, setData);
+        else
+            setData(result.data);
     } catch (err) {
         console.error(err);
         if (typeof toggleError === "function") toggleError(true);

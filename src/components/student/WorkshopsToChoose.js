@@ -1,18 +1,60 @@
 import React, {useEffect, useState} from 'react';
 import goFetch from "../../helpers/goFetch";
 import sqlDateTimeToLongDate from "../../helpers/sqlDateTimeToLongDate";
+import goPatch from "../../helpers/goPatch";
 
 function WorkshopsToChoose() {
-    const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
+    const [loadingWorkshops, toggleLoadingWorkshops] = useState(false);
+    const [loadingLikes, toggleLoadingLikes] = useState(false);
+
     const [workshops, setWorkshops] = useState([]);
+    const [reservations, setReservations] = useState([]);
 
     useEffect(() => {
-        void goFetch("/workshops/upcoming", setWorkshops, toggleLoading, toggleError);
+        void goFetch("/workshops/upcoming", setWorkshops, toggleLoadingWorkshops, toggleError
+            , (result, save) => {
+                save(
+                    result.data.map((w) => {
+                        return ({...w, likes: 0})
+                    })
+                )
+            }
+        );
     }, []);
 
+    useEffect( () => {
+        void goFetch("/reservations/upcoming", setReservations, toggleLoadingWorkshops, toggleError);
+    }, []);
+
+    useEffect(() => setWorkshops(getLikes(workshops, reservations)), [reservations]);
+
+    // zet alle likes uit reservations "in" workshops - m.a.w. haal alle duimpjes op
+    function getLikes(workshops, reservations) {
+        return workshops.map((workshop) => {
+            const hasLikes = reservations.filter((reservation) => {
+                return (workshop.id === reservation.workshop.id);
+            });
+
+            if (hasLikes.length > 1)
+                console.error("student heeft meer dan 1 reservering op dezelfde workshop");
+
+            if (hasLikes.length > 0) {
+                return ({...workshop, likes: hasLikes[0].priority, likeStr: "👍".repeat(hasLikes[0].priority,)});
+            } else {
+                return (workshop);
+            }
+        });
+    }
+
     function handleLikeButton(e, w) {
-        alert("Deze functie is helaas nog niet af");
+        // e.preventDefault();
+        void goPatch(`/workshops/like/${w.id}`
+            , {likeAmount: (Number.isInteger(w.likes) && w.likes < 3) ? w.likes + 1 : 0}
+            , toggleLoadingLikes, null, toggleError, (result) => {
+                w.likes = result.data.likeAmount;
+                w.likeStr = "👍".repeat(w.likes);
+            })
     }
 
     return (
@@ -21,15 +63,13 @@ function WorkshopsToChoose() {
             {error && <span>Er is een fout opgetreden</span>}
             {!error &&
                 <>
-                    {loading && <span>Aan het laden ...</span>}
-                    {!loading &&
+                    {loadingWorkshops && <span>Aan het laden ...</span>}
+                    {!loadingWorkshops &&
                         <>
-                            {Object.keys(workshops).length <= 0
-                                ? <span>Er zijn nog geen workshops waaruit je kunt kiezen.</span>
-                                : <span>Je mag kiezen uit de volgende workshops.</span>
-                            }
+                            {Object.keys(workshops).length <= 0 && <span>Er zijn nog geen workshops waaruit je kunt kiezen.</span>}
                             {Object.keys(workshops).length > 0 &&
                                 <>
+                                    { loadingLikes ? <span>Like verwerken ...</span> : <span>Geef &eacute;&eacute;n of meerdere <strong>Likes</strong> aan de workshops die je leuk lijken.</span>}
                                     <table>
                                         <thead>
                                         <tr>
@@ -46,8 +86,10 @@ function WorkshopsToChoose() {
                                                         <strong>{w.title}</strong><br/><small><small>{w.description}</small></small>
                                                     </td>
                                                     <td>{sqlDateTimeToLongDate(w.dtStart)}</td>
-                                                    <td>
-                                                        <button onClick={(e) => handleLikeButton(e, w)}>Like</button>
+                                                    <td className="growing-likes">
+                                                        <button
+                                                            onClick={(e) => handleLikeButton(e, w)}>{w.likeStr}&nbsp;Like
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             )

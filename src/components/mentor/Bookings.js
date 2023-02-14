@@ -14,17 +14,31 @@ function Bookings() {
     return (
         <>
             <h2>Indeling</h2>
-            <h4>bij deze workshops zijn jouw leeringen ingedeeld</h4>
-
-            <ul>
-                {Object.keys(bookings).length > 0 && bookings.map((d,n) => {
-                        return <li key={n}>
-                            <strong>{d.student.name}</strong> is ingedeeld
-                            bij <strong>{d.workshop.title}</strong> op {sqlDateTimeToLongDate(d.workshop.dtStart)}
-                        </li>
+            {error && <span>Er is een fout opgetreden.</span>}
+            {!error &&
+                <>
+                    {loading && <span>Aan het laden ...</span>}
+                    {!loading &&
+                        <>
+                            {Object.keys(bookings).length <= 0
+                                ? <span>Jouw leerlingen zijn nog niet ingedeeld bij een workshop.</span>
+                                : <span>Jouw leerlingen zijn bij de volgende workshops ingedeeld.</span>
+                            }
+                            {Object.keys(bookings).length > 0 &&
+                                <ul>
+                                    {Object.keys(bookings).length > 0 && bookings.map((d, n) => {
+                                            return <li key={n}>
+                                                <strong>{d.student.name}</strong> is ingedeeld
+                                                bij <strong>{d.workshop.title}</strong> op {sqlDateTimeToLongDate(d.workshop.dtStart)}
+                                            </li>
+                                        }
+                                    )}
+                                </ul>
+                            }
+                        </>
                     }
-                )}
-            </ul>
+                </>
+            }
         </>
     );
 }

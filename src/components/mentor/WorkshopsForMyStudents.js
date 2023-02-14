@@ -30,39 +30,51 @@ function WorkshopsForMyStudents() {
     return (
         <>
             <h2>Geplande workshops</h2>
-
-
+            {error && <span>Er ging iets mis.</span>}
             {!error &&
                 <>
-                    <h4>uit deze workshops kunnen jouw leerlingen kiezen</h4>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>workshop</th>
-                            <th>datum</th>
-                            <th>aanmelden ...</th>
-                            <th>acties</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {Object.keys(workshops).length > 0 && workshops.map((w) => {
-                            return (
-                                <tr key={w.id}>
-                                    <td>
-                                        <strong>{w.title}</strong><br/><small><small>{w.description}</small></small>
-                                    </td>
-                                    <td>{sqlDateTimeToLongDate(w.dtStart)}</td>
-                                    <td>{sqlDateTimeToRelativeDeadline(w.dtReservationsStart, w.dtReservationsEnd)}</td>
-                                    <td>
-                                        <button type="button" onClick={(e) => handleDetailsButton(e, w.id)}>details</button>
-                                        <button type="button" onClick={(e) => handlePresenceButton(e, w.id)}>presentie</button>
-                                        <button type="button" onClick={(e) => handleFeedbackButton(e, w.id)}>feedback</button>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                        </tbody>
-                    </table>
+                    {loading && <span>Aan het laden ...</span>}
+                    {!loading &&
+                        <>
+                            {Object.keys(workshops).length <= 0
+                                ? <span>Er staan geen workshops klaar voor je leerlingen.</span>
+                                : <span>Uit deze workshops kunnen jouw leerlingen kiezen</span>
+                            }
+                            {Object.keys(workshops).length > 0 &&
+                                <>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>workshop</th>
+                                            <th>datum</th>
+                                            <th>aanmelden ...</th>
+                                            <th>acties</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {Object.keys(workshops).length > 0 && workshops.map((w) => {
+                                            return (
+                                                <tr key={w.id}>
+                                                    <td>
+                                                        <strong>{w.title}</strong><br/><small><small>{w.description}</small></small>
+                                                    </td>
+                                                    <td>{sqlDateTimeToLongDate(w.dtStart)}</td>
+                                                    <td>{sqlDateTimeToRelativeDeadline(w.dtReservationsStart, w.dtReservationsEnd)}</td>
+                                                    <td>
+                                                        <button type="button" onClick={(e) => handleDetailsButton(e, w.id)}>details</button>
+                                                        <button type="button" onClick={(e) => handlePresenceButton(e, w.id)}>presentie</button>
+                                                        <button type="button" onClick={(e) => handleFeedbackButton(e, w.id)}>feedback</button>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })}
+                                        </tbody>
+                                    </table>
+
+                                </>
+                            }
+                        </>
+                    }
                 </>
             }
         </>
