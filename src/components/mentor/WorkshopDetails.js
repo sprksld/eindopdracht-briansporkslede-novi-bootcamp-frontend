@@ -17,9 +17,13 @@ function WorkshopDetails({id, action}) {
     useEffect(() => {
         if (action === "pnf") {
             void goFetch(`/bookings/attended-and-feedback`, setBookings, toggleLoading, null, (result, setData) => {
+                result.data.map( (b) => {
+                    if ( b.feedback === null ) b.feedback = "";
+                    return b;
+                });
                 setData(result.data.filter((b) => {
                     return parseInt(id) === b.workshop.id
-                }))
+                }));
             });
         }
     }, [workshop]);

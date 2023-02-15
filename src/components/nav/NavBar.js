@@ -11,11 +11,11 @@ function NavBar() {
     return (
         <nav>
             <Link to="/">
-                <span><img src={logo} alt="logo" /></span>
+                <span><img src={logo} alt="logo"/></span>
             </Link>
 
             <div>
-                {!isAuth && <button type="button" onClick={() => navigate('/inloggen')}>Log in</button> }
+                {!isAuth && <button type="button" onClick={() => navigate('/inloggen')}>Log in</button>}
                 {isAuth &&
                     <>
                         <button type="button" onClick={() => navigate('/dashboard')}>Dashboard</button>
