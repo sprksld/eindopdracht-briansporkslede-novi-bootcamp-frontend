@@ -5,7 +5,7 @@ import logo from "../../assets/Layer 1.svg";
 import {AuthContext} from "../../context/AuthContext";
 
 function NavBar() {
-    const {isAuth, logout} = useContext(AuthContext);
+    const {isAuth, logout, user} = useContext(AuthContext);
     const navigate = useNavigate();
 
     return (
@@ -19,6 +19,9 @@ function NavBar() {
                 {isAuth &&
                     <>
                         <button type="button" onClick={() => navigate('/dashboard')}>Dashboard</button>
+                        {user.isPlanner &&
+                            <button type="button" onClick={() => navigate('/upload-banner')}>Banner</button>
+                        }
                         <button type="button" onClick={logout}>Uitloggen</button>
                     </>
                 }

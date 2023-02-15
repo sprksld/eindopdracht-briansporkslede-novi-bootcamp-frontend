@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import axios from "axios";
 import path2url from "../helpers/path2url";
 import {AuthContext} from "../context/AuthContext";
+import ShowDefaultPicture from "../components/showDefaultPicture/ShowDefaultPicture";
 
 function SignIn() {
     const {login} = useContext(AuthContext);
@@ -51,6 +52,8 @@ function SignIn() {
                     <button onSubmit={handleSubmit}>Inloggen</button>
                 </section>
             </form>
+
+            <ShowDefaultPicture />
         </>
     );
 }

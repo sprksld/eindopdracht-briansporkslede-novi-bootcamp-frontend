@@ -224,11 +224,11 @@ function ProcessReservations({id}) {
                     <ul>
                         {Object.keys(workshops).length > 1 &&
                             <>
-                                <li>De workshop waar je op klikte overlapt met andere workshops. Je ziet daarom ook die overlappende workshops.</li>
+                                <li>De workshop waar je op klikte overlapt qua tijd met andere workshops. Je ziet daarom ook die overlappende workshops.</li>
                             </>
                         }
-                        <li>Normaal gesproken verwerk je de reserveringen pas na het verstrijken van de deadline.
-                        <br/>In dit geval blijven de getoonde workshops daarom ook na indeling nog dagen zichtbaar voor de leerlingen.</li>
+                        <li>Het is gebruikelijker om reserveringen pas te verwerken na het verstrijken van de deadline.
+                        <br/>Daarom blijven de getoonde workshops in dit geval ook na het indelen nog dagen zichtbaar voor de leerlingen.</li>
                         <li>Om een goed beeld te krijgen van deze pagina, zou je meerdere leerlingen moeten toevoegen en zinvolle Likes moeten invoeren. Best een klus.
                         <br/>Om dit sneler te kunnen testen, kun je nep-likes activeren. Dit doe je door in de url van deze pagina het workshop-id negatief te maken.</li>
                     </ul>
