@@ -7,6 +7,7 @@ import NavBar from "./components/nav/NavBar";
 import Footer from "./components/footer/Footer";
 import {AuthContext} from "./context/AuthContext";
 import Dashboard from "./pages/Dashboard";
+import Workshops from "./pages/Workshops";
 
 function App() {
     const {isAuth} = useContext(AuthContext);
@@ -19,8 +20,8 @@ function App() {
                     <Routes>
                         <Route exact path="/" element={<Home/>}/>
                         <Route exact path="/inloggen" element={<SignIn/>}/>
-                        <Route exact path="/dashboard" element={<Dashboard/>}/>
-                        {/*<Route exact path="/dashboard" element={isAuth ? <Dashboard/> : <Navigate to="/inloggen"/>}/>*/}
+                        <Route exact path="/dashboard" element={isAuth ? <Dashboard/> : <Navigate to="/inloggen"/>}/>
+                        <Route path="/workshops/:id" element={isAuth ? <Workshops/> : <Navigate to="/inloggen"/>}/>
                     </Routes>
                 </div>
             </main>

@@ -2,29 +2,25 @@ import React, {useEffect, useState} from 'react';
 import goFetch from "../../helpers/goFetch";
 import sqlDateTimeToLongDate from "../../helpers/sqlDateTimeToLongDate";
 import sqlDateTimeToRelativeDeadline from "../../helpers/sqlDateTimeToRelativeDeadline";
+import {useNavigate} from "react-router-dom";
 
 function WorkshopsForMyStudents() {
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
     const [workshops, setWorkshops] = useState([]);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         void goFetch("/workshops/mystudentscanchoosefrom", setWorkshops, toggleLoading, toggleError);
     }, []);
 
     function handleDetailsButton(e, id) {
-        e.preventDefault();
-        alert("Deze functie is helaas nog niet klaar.");
+        navigate(`/workshops/${id}`);
     }
 
-    function handlePresenceButton(e, id) {
-        e.preventDefault();
-        alert("Deze functie is helaas nog niet klaar.");
-    }
-
-    function handleFeedbackButton(e, id) {
-        e.preventDefault();
-        alert("Deze functie is helaas nog niet klaar.");
+    function handlePresenceAndFeedbackButton(e, id) {
+        navigate(`/workshops/${id}?action=pnf`);
     }
 
     return (
@@ -62,15 +58,13 @@ function WorkshopsForMyStudents() {
                                                     <td>{sqlDateTimeToRelativeDeadline(w.dtReservationsStart, w.dtReservationsEnd)}</td>
                                                     <td>
                                                         <button type="button" onClick={(e) => handleDetailsButton(e, w.id)}>details</button>
-                                                        <button type="button" onClick={(e) => handlePresenceButton(e, w.id)}>presentie</button>
-                                                        <button type="button" onClick={(e) => handleFeedbackButton(e, w.id)}>feedback</button>
+                                                        <button type="button" onClick={(e) => handlePresenceAndFeedbackButton(e, w.id)}>presentie & feedback</button>
                                                     </td>
                                                 </tr>
                                             )
                                         })}
                                         </tbody>
                                     </table>
-
                                 </>
                             }
                         </>

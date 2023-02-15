@@ -1,29 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import goFetch from "../../helpers/goFetch";
 import sqlDateTimeToLongDate from "../../helpers/sqlDateTimeToLongDate";
+import {useNavigate} from "react-router-dom";
 
 function WorkshopsToTeach() {
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
     const [workshops, setWorkshops] = useState([]);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         void goFetch("/workshops/ihavetoteach", setWorkshops, toggleLoading, toggleError)
     }, []);
 
     function handleListButton(e, id) {
-        e.preventDefault();
-        alert("Deze functie is helaas nog niet klaar.");
+        navigate(`/workshops/${id}`);
     }
 
-    function handlePresenceButton(e, id) {
-        e.preventDefault();
-        alert("Deze functie is helaas nog niet klaar.");
-    }
-
-    function handleFeedbackButton(e, id) {
-        e.preventDefault();
-        alert("Deze functie is helaas nog niet klaar.");
+    function handlePresenceAndFeedbackButton(e, id) {
+        navigate(`/workshops/${id}?action=pnf`);
     }
 
     return (
@@ -64,9 +60,8 @@ function WorkshopsToTeach() {
                                                             <td>{w.room}</td>
                                                             <td>?</td>
                                                             <td>
-                                                                <button type="button" onClick={(e) => handleListButton(e, w.id)}>deelnemers</button>
-                                                                <button type="button" onClick={(e) => handlePresenceButton(e, w.id)}>presentie</button>
-                                                                <button type="button" onClick={(e) => handleFeedbackButton(e, w.id)}>feedback</button>
+                                                                <button type="button" onClick={(e) => handleListButton(e, w.id)}>details</button>
+                                                                <button type="button" onClick={(e) => handlePresenceAndFeedbackButton(e, w.id)}>presentie & feedback</button>
                                                             </td>
                                                         </tr>
                                                     )

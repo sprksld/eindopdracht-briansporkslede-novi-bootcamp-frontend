@@ -4,7 +4,6 @@ import goStore from "../../helpers/goStore";
 
 function AddStudent() {
     const {user} = useContext(AuthContext);
-    console.log("USER:", user);
     const [addSuccess, toggleAddSuccess] = useState(false);
     const [formData, setFormData] = useState({
         name: "",

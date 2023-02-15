@@ -3,24 +3,26 @@ import goFetch from "../../helpers/goFetch";
 import sqlDateTimeToLongDate from "../../helpers/sqlDateTimeToLongDate";
 import sqlDateTimeToRelativeDeadline from "../../helpers/sqlDateTimeToRelativeDeadline";
 import goDelete from "../../helpers/goDelete";
+import {useNavigate} from "react-router-dom";
 
 function WorkshopsPlanned() {
     const [loading, toggleLoading] = useState(false);
+    const [deleteSuccess, toggleDeleteSuccess] = useState(false);
     const [error, toggleError] = useState(false);
     const [workshops, setWorkshops] = useState([]);
 
+    const navigate = useNavigate();
+
+    function handleProcessButton(e, id) {
+        navigate(`/workshops/${id}`);
+    }
+
     function handleDeleteButton(e, id) {
-        e.preventDefault();
         const afterSuccess = workshops.filter((w) => w.id !== id);
         void goDelete(`/workshops/${id}`, setWorkshops, null, null, null
             , (result, setData) => {
                 setData(afterSuccess)
             });
-    }
-
-    function handleProcessButton(e, id) {
-        e.preventDefault();
-        alert("Deze functie is helaas nog niet klaar.");
     }
 
     useEffect(() => {

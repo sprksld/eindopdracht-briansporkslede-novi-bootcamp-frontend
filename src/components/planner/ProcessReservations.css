@@ -1,0 +1,113 @@
+/* -------------------- COLORS  --------------------------------------------------------- */
+
+.inplanner {
+    background-color: var(--background-3);
+}
+
+.inplanner *, .inplanner *::after {
+    color: var(--secondary-text-color);
+}
+
+.inplanner section {
+    background-color: var(--background-7);
+}
+
+.inplanner button {
+    background-color: var(--background-10);
+    color: var(--background-2);
+}
+
+/* -------------------- FONTS & TYPOGRAPHY ---------------------------------------------- */
+
+span.big-emoji {
+    font-size: 2rem;
+}
+
+div.inplanner section:nth-of-type(1) button {
+    font-size: 1.4rem;
+
+}
+
+.inplanner ul {
+    list-style-type: none;
+}
+
+/* -------------------- FLEX ------------------------------------------------------------ */
+
+div.inplanner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div.inplanner section:nth-of-type(1) {
+    flex-grow: 1;
+    flex-wrap: wrap;
+}
+
+div.buttons-unassigned
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-inline: 8px;
+    white-space: nowrap;
+}
+
+div.buttons-assigned {
+}
+
+/* -------------------- SPACING & DIMENSIONS -------------------------------------------- */
+
+.inplanner li {
+    line-height: 2.5rem;
+}
+
+.inplanner section {
+    margin: 0;
+}
+
+.inplanner .nobr {
+    padding: 8px;
+}
+
+.inplanner h1, .inplanner h2 {
+	margin: 0;
+	padding: 0;
+}
+
+.inplanner article.workshop {
+	display: block;
+	border-left-width: 40px;
+	border-style: solid;
+
+    min-height: 10em;
+    padding: 1em;
+}
+
+
+div.inplanner section:nth-of-type(1) button {
+    margin-block: 4px;
+    margin-left: 6px;
+    padding: 4px;
+}
+
+div.inplanner section:nth-of-type(2) button {
+}
+
+/* ----------------- LEFTOVERS ---------------------------------------------------------- */
+
+.btnx
+{
+    background-color: var(--background-1);
+    color: var(--background-2);
+}
+
+.btnx .btn--growing-likes
+{
+    width: 9em;
+}
+
+.btnx .btn--placed
+{
+}

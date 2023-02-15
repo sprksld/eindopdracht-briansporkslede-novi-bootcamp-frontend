@@ -138,7 +138,7 @@ function AddWorkshop() {
                         <option value="120"></option>
                     </datalist>
                     <label htmlFor="category">Categorie:
-                        <input type="text" id="category" name="category" placeholder="type of kies categorie"
+                        <input type="text" id="category" name="category" placeholder="typ of kies categorie"
                                value={formData.category} onChange={changeHandler}
                                autoComplete="off" list="list-of-categories"/>
                         <datalist id="list-of-categories">
@@ -148,7 +148,7 @@ function AddWorkshop() {
                         </datalist>
                     </label>
                     <label htmlFor="room">Lokaal:
-                        <input type="text" id="room" name="room" placeholder="type of kies lokaal"
+                        <input type="text" id="room" name="room" placeholder="typ of kies lokaal"
                                value={formData.room} onChange={changeHandler}
                                autoComplete="off" list="list-of-rooms"/>
                         <datalist id="list-of-rooms">

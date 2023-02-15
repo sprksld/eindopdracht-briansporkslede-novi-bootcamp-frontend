@@ -80,9 +80,22 @@ form section.submit-error {
     background-color: var(--orange);
 }
 
-caption {
-    color: var(--secondary-text-color);
+button[disabled] {
+    background-color: var(--background-4);
 }
+
+button[disabled]:hover {
+    cursor: not-allowed;
+}
+
+.present {
+    color: lightgreen;
+}
+
+.absent {
+    color: red;
+}
+
 
 .red {
     color: red;
@@ -149,6 +162,8 @@ main {
     justify-content: center;
     /*max-width: 2360px;*/
     /*margin: auto;*/
+    padding-inline: 1.6vw;
+    padding-block: 1.6vh;
 }
 
 footer {
@@ -171,7 +186,7 @@ h2 + h1 {
 */
 
 h2 {
-    margin-top: 1.6em;
+    margin-top: 1.75rem;
 }
 
 table {
@@ -195,13 +210,16 @@ tbody {
 }
 
 td.growing-likes > button {
-    width: 9em;
+    width: 13rem;
+}
+
+td.presence-wider-btn > button {
+    width: 9rem;
 }
 
 label {
     display: block;
 }
-
 
 section {
     margin: 0 0 25px 0;
@@ -216,6 +234,7 @@ article {
     border-radius: 4px;
     padding: 2em;
     flex-basis: 27vw;
+    background-color: yellow;
 }
 
 form, form > section {

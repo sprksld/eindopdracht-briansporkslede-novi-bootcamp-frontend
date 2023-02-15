@@ -19,7 +19,7 @@ function AuthContextProvider({children}) {
         const storedToken = localStorage.getItem("token");
         const decodedToken = (storedToken) ? jwt_decode(storedToken) : null;
         if (storedToken && isValidJwtToken(storedToken)) {
-            console.log("user still logged in");
+            console.log("valid jwt token found. user still logged in");
             // console.log(decodedToken.exp);
             void fetchUserData(storedToken, decodedToken.sub);
         } else {
@@ -43,7 +43,7 @@ function AuthContextProvider({children}) {
 
     function logout() {
         localStorage.removeItem("token");   // was clear()
-        console.log("The user has logged out");
+        console.log("user logged out. jwt token removed.");
         setAuth({
             ...auth
             , isAuth: false

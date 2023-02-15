@@ -1,6 +1,7 @@
 // this helper converts a sqlDate to a short readable string in Dutch
 
 function sqlDateTimeToShortDate(isoFormatDateString) {
+    if ( typeof isoFormatDateString !== "string") return;
     const dateParts = isoFormatDateString.split("-");
     const jsDate = new Date(dateParts[0], dateParts[1] - 1
         , dateParts[2].substr(0, 2)

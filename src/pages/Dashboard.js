@@ -1,14 +1,14 @@
 import React, {useContext} from 'react';
 import WorkshopsForMyStudents from "../components/mentor/WorkshopsForMyStudents";
 import WorkshopsPlanned from "../components/planner/WorkshopsPlanned";
-import WorkshopsToChoose from "../components/student/WorkshopsToChoose";
+import WorkshopsToChooseFrom from "../components/student/WorkshopsToChooseFrom";
 import WorkshopsToTeach from "../components/teacher/WorkshopsToTeach";
 import {AuthContext} from "../context/AuthContext";
 import WhoAmI from "../components/WhoAmI";
 import Bookings from "../components/mentor/Bookings";
 import AddWorkshop from "../components/planner/AddWorkshop";
 import LikesByMyStudents from "../components/mentor/LikesByMyStudents";
-import MyBookings from "../components/student/MyBookings";
+import WorkshopsToAttend from "../components/student/WorkshopsToAttend";
 import MyStudents from "../components/mentor/MyStudents";
 import AddStudent from "../components/mentor/AddStudent";
 
@@ -31,11 +31,11 @@ function Dashboard() {
                         }
                         {isMentor &&
                             <>
-                                <WorkshopsForMyStudents/>
-
                                 <Bookings/>
 
                                 <LikesByMyStudents/>
+
+                                <WorkshopsForMyStudents/>
 
                                 <MyStudents/>
 
@@ -46,9 +46,9 @@ function Dashboard() {
                             <>
                                 <h1>Student Dashboard voor {username}</h1>
 
-                                <MyBookings/>
+                                <WorkshopsToAttend/>
 
-                                <WorkshopsToChoose/>
+                                <WorkshopsToChooseFrom/>
                             </>
                         }
                         {isTeacher &&

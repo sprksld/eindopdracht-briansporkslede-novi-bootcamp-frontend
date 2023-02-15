@@ -85,9 +85,9 @@ function MyStudents() {
                                         <tbody>
                                         <tr>
                                             <td colSpan="2"><input type="text" name="q" value={q}
-                                                                   onChange={changeHandler} autoFocus
+                                                                   onChange={changeHandler}
                                                                    autoComplete="off"
-                                                                   placeholder=" type hier om te zoeken"/></td>
+                                                                   placeholder=" typ hier om te zoeken"/></td>
                                             <td>
                                                 <button type="button" onClick={(e) => handleAddButton(e)}>toevoegen
                                                 </button>

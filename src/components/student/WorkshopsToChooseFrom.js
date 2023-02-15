@@ -3,7 +3,7 @@ import goFetch from "../../helpers/goFetch";
 import sqlDateTimeToLongDate from "../../helpers/sqlDateTimeToLongDate";
 import goPatch from "../../helpers/goPatch";
 
-function WorkshopsToChoose() {
+function WorkshopsToChooseFrom() {
     const [error, toggleError] = useState(false);
     const [loadingWorkshops, toggleLoadingWorkshops] = useState(false);
     const [loadingLikes, toggleLoadingLikes] = useState(false);
@@ -48,7 +48,6 @@ function WorkshopsToChoose() {
     }
 
     function handleLikeButton(e, w) {
-        // e.preventDefault();
         void goPatch(`/workshops/like/${w.id}`
             , {likeAmount: (Number.isInteger(w.likes) && w.likes < 3) ? w.likes + 1 : 0}
             , toggleLoadingLikes, null, toggleError, (result) => {
@@ -87,7 +86,7 @@ function WorkshopsToChoose() {
                                                     </td>
                                                     <td>{sqlDateTimeToLongDate(w.dtStart)}</td>
                                                     <td className="growing-likes">
-                                                        <button
+                                                        <button type="button"
                                                             onClick={(e) => handleLikeButton(e, w)}>{w.likeStr}&nbsp;Like
                                                         </button>
                                                     </td>
@@ -106,4 +105,4 @@ function WorkshopsToChoose() {
     );
 }
 
-export default WorkshopsToChoose;
+export default WorkshopsToChooseFrom;

@@ -2,7 +2,7 @@ import React, {useEffect, useState, useContext} from 'react';
 import sqlDateTimeToLongDate from "../../helpers/sqlDateTimeToLongDate";
 import goFetch from "../../helpers/goFetch";
 
-function MyBookings() {
+function WorkshopsToAttend() {
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
     const [bookings, setData] = useState([]);
@@ -57,4 +57,4 @@ function MyBookings() {
     )
 }
 
-export default MyBookings;
+export default WorkshopsToAttend;
