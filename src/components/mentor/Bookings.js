@@ -26,10 +26,10 @@ function Bookings() {
                             }
                             {Object.keys(bookings).length > 0 &&
                                 <ul>
-                                    {Object.keys(bookings).length > 0 && bookings.map((d, n) => {
-                                            return <li key={n}>
-                                                <strong>{d.student.name}</strong> is ingedeeld
-                                                bij <strong>{d.workshop.title}</strong> op {sqlDateTimeToLongDate(d.workshop.dtStart)}
+                                    {Object.keys(bookings).length > 0 && bookings.map((booking, bookingKey) => {
+                                            return <li key={bookingKey}>
+                                                <strong>{booking.student.name}</strong> is ingedeeld
+                                                bij <strong>{booking.workshop.title}</strong> op {sqlDateTimeToLongDate(booking.workshop.dtStart)}
                                             </li>
                                         }
                                     )}

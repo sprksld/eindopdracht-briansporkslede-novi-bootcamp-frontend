@@ -78,16 +78,16 @@ function WorkshopsToChooseFrom() {
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {Object.keys(workshops).length > 0 && workshops.map((w, n) => {
+                                        {Object.keys(workshops).length > 0 && workshops.map((workshop, workshopKey) => {
                                             return (
-                                                <tr key={n}>
+                                                <tr key={workshopKey}>
                                                     <td>
-                                                        <strong>{w.title}</strong><br/><small><small>{w.description}</small></small>
+                                                        <strong>{workshop.title}</strong><br/><small><small>{workshop.description}</small></small>
                                                     </td>
-                                                    <td>{sqlDateTimeToLongDate(w.dtStart)}</td>
+                                                    <td>{sqlDateTimeToLongDate(workshop.dtStart)}</td>
                                                     <td className="growing-likes">
                                                         <button type="button"
-                                                            onClick={(e) => handleLikeButton(e, w)}>{w.likeStr}&nbsp;Like
+                                                            onClick={(e) => handleLikeButton(e, workshop)}>{workshop.likeStr}&nbsp;Like
                                                         </button>
                                                     </td>
                                                 </tr>

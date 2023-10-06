@@ -53,20 +53,20 @@ function WorkshopsPlanned() {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {workshops.map((w, n) => {
+                                    {workshops.map((workshop, workshopKey) => {
                                         return (
-                                            <tr key={n}>
+                                            <tr key={workshopKey}>
                                                 <td>
-                                                    <strong>{w.title}</strong><br/><small><small>{w.description}</small></small>
+                                                    <strong>{workshop.title}</strong><br/><small><small>{workshop.description}</small></small>
                                                 </td>
-                                                <td>{sqlDateTimeToLongDate(w.dtStart)}</td>
-                                                <td>{sqlDateTimeToRelativeDeadline(w.dtReservationsStart, w.dtReservationsEnd)}</td>
+                                                <td>{sqlDateTimeToLongDate(workshop.dtStart)}</td>
+                                                <td>{sqlDateTimeToRelativeDeadline(workshop.dtReservationsStart, workshop.dtReservationsEnd)}</td>
                                                 <td>
                                                     <button type="button"
-                                                            onClick={(e) => handleDeleteButton(e, w.id)}>verwijder
+                                                            onClick={(e) => handleDeleteButton(e, workshop.id)}>verwijder
                                                     </button>
                                                     <button type="button"
-                                                            onClick={(e) => handleProcessButton(e, w.id)}>verwerk
+                                                            onClick={(e) => handleProcessButton(e, workshop.id)}>verwerk
                                                     </button>
                                                 </td>
                                             </tr>

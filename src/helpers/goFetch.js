@@ -17,18 +17,11 @@ async function goFetch(endpoint, setData, toggleBusy, toggleError, afterFetch, s
         }
         if ( typeof signal === "object")
             headers = { ...headers, signal: signal, };
-        // console.log("HEADERS:",headers);
 
         const result = await axios.get(endpoint2url(endpoint), {
             headers: headers
-/*  TODO - remove this when it works fine
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${jwt}`,
-            }
-*/
         });
-        // console.log(result.data);
+
         if (typeof afterFetch === "function")
             afterFetch(result, setData);
         else

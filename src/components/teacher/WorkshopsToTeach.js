@@ -50,18 +50,18 @@ function WorkshopsToTeach() {
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                {Object.keys(workshops).length > 0 && workshops.map((w, n) => {
+                                                {Object.keys(workshops).length > 0 && workshops.map((workshop, workshopKey) => {
                                                     return (
-                                                        <tr key={n}>
+                                                        <tr key={workshopKey}>
                                                             <td>
-                                                                <strong>{w.title}</strong><br/><small><small>{w.description}</small></small>
+                                                                <strong>{workshop.title}</strong><br/><small><small>{workshop.description}</small></small>
                                                             </td>
-                                                            <td>{sqlDateTimeToLongDate(w.dtStart)}</td>
-                                                            <td>{w.room}</td>
+                                                            <td>{sqlDateTimeToLongDate(workshop.dtStart)}</td>
+                                                            <td>{workshop.room}</td>
                                                             <td>?</td>
                                                             <td>
-                                                                <button type="button" onClick={(e) => handleListButton(e, w.id)}>details</button>
-                                                                <button type="button" onClick={(e) => handlePresenceAndFeedbackButton(e, w.id)}>presentie & feedback</button>
+                                                                <button type="button" onClick={(e) => handleListButton(e, workshop.id)}>details</button>
+                                                                <button type="button" onClick={(e) => handlePresenceAndFeedbackButton(e, workshop.id)}>presentie & feedback</button>
                                                             </td>
                                                         </tr>
                                                     )

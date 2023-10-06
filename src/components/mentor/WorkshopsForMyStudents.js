@@ -48,17 +48,17 @@ function WorkshopsForMyStudents() {
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {Object.keys(workshops).length > 0 && workshops.map((w) => {
+                                        {Object.keys(workshops).length > 0 && workshops.map((workshop) => {
                                             return (
-                                                <tr key={w.id}>
+                                                <tr key={workshop.id}>
                                                     <td>
-                                                        <strong>{w.title}</strong><br/><small><small>{w.description}</small></small>
+                                                        <strong>{workshop.title}</strong><br/><small><small>{workshop.description}</small></small>
                                                     </td>
-                                                    <td>{sqlDateTimeToLongDate(w.dtStart)}</td>
-                                                    <td>{sqlDateTimeToRelativeDeadline(w.dtReservationsStart, w.dtReservationsEnd)}</td>
+                                                    <td>{sqlDateTimeToLongDate(workshop.dtStart)}</td>
+                                                    <td>{sqlDateTimeToRelativeDeadline(workshop.dtReservationsStart, workshop.dtReservationsEnd)}</td>
                                                     <td>
-                                                        <button type="button" onClick={(e) => handleDetailsButton(e, w.id)}>details</button>
-                                                        <button type="button" onClick={(e) => handlePresenceAndFeedbackButton(e, w.id)}>presentie & feedback</button>
+                                                        <button type="button" onClick={(e) => handleDetailsButton(e, workshop.id)}>details</button>
+                                                        <button type="button" onClick={(e) => handlePresenceAndFeedbackButton(e, workshop.id)}>presentie & feedback</button>
                                                     </td>
                                                 </tr>
                                             )

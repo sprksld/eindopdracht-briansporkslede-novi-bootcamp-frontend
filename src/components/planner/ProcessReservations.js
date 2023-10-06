@@ -8,11 +8,6 @@ import goStore from "../../helpers/goStore";
 import goFetch from "../../helpers/goFetch";
 import {cleanup} from "@testing-library/react";
 
-// this file is rather complex and still under development.
-// I know it needs simplification and code cleaning.
-// I promise I'll do that first thing as soon as this file is fyllu functional!
-// also it still uses fake "Like-data" for workshops. Yeah, I'm a cheater ... while testing!
-
 function ProcessReservations({id}) {
     const [students, setStudents] = useState([]);
     const [workshops, setWorkshops] = useState([]);
@@ -23,6 +18,7 @@ function ProcessReservations({id}) {
     const [filteredStudents, setFilteredStudents] = useState([]);
     let useFakeLikes = false;
 
+    // check to see if tester wants to use "fake likes" ...
     if ( id < 0 ) {
         id *= -1;
         useFakeLikes = true;
@@ -48,10 +44,8 @@ function ProcessReservations({id}) {
         return () => {controller.abort();};
     }, []);
 
-    // generate nice sequence of colors ... to organize the workshops
+    // generate nice sequence of colors ... to visually organize the workshops
     generateStyles(workshops.length, 0, 0);
-
-    // only keep overlapping workshops (TODO - maybe it's better to already filter in the backend ... ? )
 
     function filterWorkshops(workshops, setWorkshops) {
         const clickedWorkshop = workshops.find((w) => {
@@ -61,7 +55,6 @@ function ProcessReservations({id}) {
         const startMomentAInSeconds = Math.floor(new Date(clickedWorkshop.dtStart).getTime() / 1000);
         const endMomentAInSeconds = startMomentAInSeconds + (clickedWorkshop.duration * 60);
 
-        // TODO: overlap misschien alleen berekenen voor zelfde leerjaar ( ... range)
         const overlappingWorkshops = workshops.filter((w) => {
             const startMomentBInSeconds = Math.floor(new Date(w.dtStart).getTime() / 1000);
             const endMomentBInSeconds = startMomentBInSeconds + (w.duration * 60);
@@ -106,11 +99,9 @@ function ProcessReservations({id}) {
             filtered = filtered.map( (f) => {
                 let fakeLikes = [];
                 const numberOfFakeLikes = Math.floor(Math.random()*(workshops.length+1));
-                // console.log("numberOfFakeLikes = ", numberOfFakeLikes);
                 for ( let i = 0; i < numberOfFakeLikes; i++) {
                     const fakeWorkshopToLike = Math.floor( (Math.random()*workshops.length)+1);
                     const fakeWorkshop = workshops[fakeWorkshopToLike-1];
-                    // console.log("fakeWorkshop = ", fakeWorkshop);
                     fakeLikes.push( { workshopId: fakeWorkshop.id, likeAmount: Math.floor((Math.random()*3))+1 });
                 }
                 return { ...f, likes: fakeLikes }
@@ -134,13 +125,12 @@ function ProcessReservations({id}) {
         student.workshop = workshopId;
         setStudents(students.map((s) => {
             return s
-        })); // TODO - uitzoeken hoe anders een re-render te doen
+        }));
     }
 
     function handleDenyClick(e, student) {
         toggleError(false);
         student.workshop = 0;
-        // TODO: Ik weet niet hoe anders re-render te doen
         setStudents(students.map((s) => {return s}));
     }
 
@@ -166,7 +156,7 @@ function ProcessReservations({id}) {
         if (student.workshop > 0 && likeAmount < favoriteLikeAmount && likeAmount === 0)
             return "😡";         // ANGRY
 
-        // TODO: ternary if staat er nog om makkelijk andere emoji te kunnen tonen bij plaatsing; kijken at praktisch is
+        // the next ternary-if can be used to change the emoji when student is placed inside a workshop
 
         switch (likeAmount) {
             case 1:
@@ -177,9 +167,9 @@ function ProcessReservations({id}) {
                 return (student.workshop) ? "👍👍👍" : "👍👍👍";
             default:
                 if (likeAmount > 3)
-                    return (student.workshop) ? "😇" : "😇";          // IN HEAVEN
+                    return (student.workshop) ? "😇" : "😇";        // IN HEAVEN
                 else
-                    return (student.workshop > 0) ? "😐" : "-";     // DOES NOT CARE
+                    return (student.workshop > 0) ? "😐" : "-";     // DOES NOT REALLY CARE
         }
     }
 
@@ -198,7 +188,6 @@ function ProcessReservations({id}) {
         const bookings = filteredStudents.map((student) => {
             return ({student_id: student.id, workshop_id: student.workshop});
         })
-        console.log(bookings);
 
         void saveBookings(bookings);
 
@@ -232,22 +221,23 @@ function ProcessReservations({id}) {
                         <li>Om een goed beeld te krijgen van deze pagina, zou je meerdere leerlingen moeten toevoegen en zinvolle Likes moeten invoeren. Best een klus.
                         <br/>Om dit sneler te kunnen testen, kun je nep-likes activeren. Dit doe je door in de url van deze pagina het workshop-id negatief te maken.</li>
                     </ul>
-                    {isExecuteButtonNeeded() && <button onClick={(e) => handleConsolidateButton(e)}>Vastleggen</button>}
+                    {isExecuteButtonNeeded() && <button type="button" onClick={(e) => handleConsolidateButton(e)}>Vastleggen</button>}
                     {(error) ? <span>Het verwerken van de boekingen is <strong>niet</strong> gelukt.</span> :
                         <span> </span>}
 
                     <div className="inplanner">
                         {Object.keys(workshops).length > 0 &&
                             <section>
-                                {workshops.map((workshop, n1) => {
+                                {workshops.map((workshop, workshopKey1) => {
                                     return (
-                                        <article key={n1} className="workshop">
+                                        <article key={workshopKey1} className="workshop">
                                             <h2>{workshop.title} [{workshop.minParticipants}-{workshop.maxParticipants}p]</h2>
                                             <div className="buttons-assigned">
-                                            {Object.keys(filteredStudents).length > 0 && filteredStudents.filter((s) => s.workshop === workshop.id).map((student, n2) => {
+                                            {Object.keys(filteredStudents).length > 0 && filteredStudents.filter((s) => s.workshop === workshop.id).map((student, studentKey2) => {
                                                 return (
-                                                    <button key={n2}
-                                                            title={"hier bijvoorbeeld nog een berichtje over " + student.name}
+                                                    <button type="button"
+                                                            key={studentKey2}
+                                                            title={"placeholder for message about " + student.name}
                                                             onClick={(e) => handleDenyClick(e, student)}>
                                                         {student.name} <span
                                                         className="big-emoji">{showWorkshopLikesAsEmoji(student)}</span>
@@ -263,16 +253,16 @@ function ProcessReservations({id}) {
                         {Object.keys(filteredStudents).length > 0 &&
                             <section>
                                 <ul>
-                                    {filteredStudents.filter((s) => s.workshop === 0).map((student, n) => {
+                                    {filteredStudents.filter((s) => s.workshop === 0).map((student, studentKey) => {
                                         return (
-                                            <li key={n}>
+                                            <li key={studentKey}>
                                                 <span className="nobr">
                                                     <big>{gender(student.gender)}</big><small>{student.name}</small>
                                                 </span>
                                                 <div className="buttons-unassigned">
-                                                    {Object.keys(workshops).length > 0 && workshops.map((w, m) => {
+                                                    {Object.keys(workshops).length > 0 && workshops.map((w, workshopKey) => {
                                                         return (
-                                                            <button key={m} onClick={
+                                                            <button type="button" key={workshopKey} onClick={
                                                                 (e) => handleAllowClick(e, student, w.id)}
                                                                     className="workshop">
                                                                 <big>{showWorkshopLikesAsEmoji(student, w.id)}</big>

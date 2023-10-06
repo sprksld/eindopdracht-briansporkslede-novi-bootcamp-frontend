@@ -85,7 +85,6 @@ div.buttons-assigned {
     padding: 1em;
 }
 
-
 div.inplanner section:nth-of-type(1) button {
     margin-block: 4px;
     margin-left: 6px;
@@ -93,21 +92,4 @@ div.inplanner section:nth-of-type(1) button {
 }
 
 div.inplanner section:nth-of-type(2) button {
-}
-
-/* ----------------- LEFTOVERS ---------------------------------------------------------- */
-
-.btnx
-{
-    background-color: var(--background-1);
-    color: var(--background-2);
-}
-
-.btnx .btn--growing-likes
-{
-    width: 9em;
-}
-
-.btnx .btn--placed
-{
 }

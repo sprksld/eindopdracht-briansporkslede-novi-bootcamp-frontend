@@ -53,7 +53,7 @@ function WorkshopBanner() {
     // console.log(auth);
 
     return (
-        <div className="content page-container">
+        <div className="content">
             <h1>Afbeelding uploaden en preview bekijken</h1>
             <p>Op de pagina kun je een afbeelding uploaden voor deze workshopronde.
                 <br/>De afbeelding wordt getoond op de homepage en tijdens het inloggen.</p>

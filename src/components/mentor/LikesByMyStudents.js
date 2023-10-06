@@ -25,11 +25,11 @@ function LikesByMyStudents() {
                             }
                             {Object.keys(reservations).length > 0 &&
                                 <ul>
-                                    {reservations.map((d) => {
+                                    {reservations.map((reservation) => {
                                             return (
-                                                <li key={d.id}>
-                                                    <strong>{d.student.name}</strong> heeft interesse
-                                                    voor <strong>{d.workshop.title}</strong>
+                                                <li key={reservation.id}>
+                                                    <strong>{reservation.student.name}</strong> heeft interesse
+                                                    voor <strong>{reservation.workshop.title}</strong>
                                                 </li>
                                             )
                                         }

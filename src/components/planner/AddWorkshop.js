@@ -142,8 +142,8 @@ function AddWorkshop() {
                                value={formData.category} onChange={changeHandler}
                                autoComplete="off" list="list-of-categories"/>
                         <datalist id="list-of-categories">
-                            {Object.keys(categories).length > 0 && categories.map((value, n) => {
-                                return (<option key={n} value={value}>{value}</option>)
+                            {Object.keys(categories).length > 0 && categories.map((value, categoryKey) => {
+                                return (<option key={categoryKey} value={value}>{value}</option>)
                             })}
                         </datalist>
                     </label>
@@ -152,8 +152,8 @@ function AddWorkshop() {
                                value={formData.room} onChange={changeHandler}
                                autoComplete="off" list="list-of-rooms"/>
                         <datalist id="list-of-rooms">
-                            {Object.keys(rooms).length > 0 && rooms.map((value, n) => {
-                                return (<option key={n} value={value}>{value}</option>)
+                            {Object.keys(rooms).length > 0 && rooms.map((value, roomKey) => {
+                                return (<option key={roomKey} value={value}>{value}</option>)
                             })}
                         </datalist>
                     </label>
@@ -216,7 +216,7 @@ function AddWorkshop() {
                                 })}
                             </select>
                         </p></label>
-                    <button disabled={!formCompleted} onSubmit={submitHandler}>Workshop inplannen</button>
+                    <button type="submit" disabled={!formCompleted} onSubmit={submitHandler}>Workshop inplannen</button>
 
                 </section>
 

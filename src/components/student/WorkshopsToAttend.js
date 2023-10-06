@@ -34,15 +34,15 @@ function WorkshopsToAttend() {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {Object.keys(bookings).length > 0 && bookings.map((b, n) => {
+                                    {Object.keys(bookings).length > 0 && bookings.map((booking, bookingKey) => {
                                         return (
-                                            <tr key={n}>
+                                            <tr key={bookingKey}>
                                                 <td>
-                                                    <strong>{b.workshop.title}</strong>
-                                                    <br/><small><small>{b.workshop.description}</small></small>
+                                                    <strong>{booking.workshop.title}</strong>
+                                                    <br/><small><small>{booking.workshop.description}</small></small>
                                                 </td>
-                                                <td>{sqlDateTimeToLongDate(b.workshop.dtStart)}</td>
-                                                <td>{b.workshop.room}</td>
+                                                <td>{sqlDateTimeToLongDate(booking.workshop.dtStart)}</td>
+                                                <td>{booking.workshop.room}</td>
                                             </tr>
                                         )
                                     })}

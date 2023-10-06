@@ -35,6 +35,12 @@ function SignIn() {
         <>
             <h1>Inloggen</h1>
 
+            <p>Als je de applicatie gestart hebt met <code>data.sql</code>, dan zijn er reeds fictieve gebruikers
+                en workshops aangemaakt.
+                <br/>De gebruikersnamen zijn dan: <strong>mentor1, mentor2, student1, student2, teacher1,
+                    teacher2</strong> en <strong>planner</strong>.
+                <br/>De wachtwoorden staan in de installatiehandleiding. Net als de instructies om zonder <code>data.sql</code> te testen.</p>
+
             <form onSubmit={handleSubmit} className="signin">
                 <section className="submit-error">
                     {error && <strong>{errorMessage}</strong>}
@@ -49,11 +55,12 @@ function SignIn() {
                         <input id="password" type="password" name="password" value={password}
                                onChange={(e) => setPassword(e.target.value)}/>
                     </label>
-                    <button onSubmit={handleSubmit}>Inloggen</button>
+                    <button type="submit" onSubmit={handleSubmit}>Inloggen</button>
                 </section>
             </form>
 
             <ShowDefaultPicture />
+
         </>
     );
 }

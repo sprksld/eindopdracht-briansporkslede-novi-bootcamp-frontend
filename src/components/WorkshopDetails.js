@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
-import goFetch from "../../helpers/goFetch";
-import sqlDateTimeToLongDate from "../../helpers/sqlDateTimeToLongDate";
-import {AuthContext} from "../../context/AuthContext";
+import goFetch from "../helpers/goFetch";
+import sqlDateTimeToLongDate from "../helpers/sqlDateTimeToLongDate";
+import {AuthContext} from "../context/AuthContext";
 
 function WorkshopDetails({id, action}) {
     const {user: {isPlanner, isMentor, isStudent, isTeacher}} = useContext(AuthContext);
@@ -30,19 +30,19 @@ function WorkshopDetails({id, action}) {
 
     function handleChange(e, id) {
         e.preventDefault();
-        setBookings(bookings.map((b) => {
-            if (b.id === parseInt(id))
-                b.feedback = e.target.value;
-            return b;
+        setBookings(bookings.map((booking) => {
+            if (booking.id === parseInt(id))
+                booking.feedback = e.target.value;
+            return booking;
         }))
     }
 
     function togglePresence(e, id) {
-        setBookings(bookings.map((b) => {
-            if (b.id === parseInt(id)) {
-                b.attended = (!b.attended);
+        setBookings(bookings.map((booking) => {
+            if (booking.id === parseInt(id)) {
+                booking.attended = (!booking.attended);
             }
-            return b;
+            return booking;
         }));
     }
 
@@ -61,20 +61,36 @@ function WorkshopDetails({id, action}) {
                                 <td>{sqlDateTimeToLongDate(workshop.dtStart)}</td>
                             </tr>
                             <tr>
-                                <td>waar</td>
-                                <td>{workshop.room}</td>
-                            </tr>
-                            <tr>
-                                <td>workshop</td>
-                                <td>{workshop.title}</td>
-                            </tr>
-                            <tr>
                                 <td>docent</td>
                                 <td>{workshop.teacher.name}</td>
                             </tr>
                             <tr>
+                                <td>waar</td>
+                                <td>{workshop.room}</td>
+                            </tr>
+                            <tr>
+                                <td>tijdsduur</td>
+                                <td>{workshop.duration} minuten</td>
+                            </tr>
+                            <tr>
+                                <td>{workshop.category} workshop</td>
+                                <td>{workshop.title}</td>
+                            </tr>
+                            <tr>
+                                <td>definitief aantal deelnemers</td>
+                                <td>?</td>
+                            </tr>
+                            <tr>
                                 <td>beschrijving</td>
                                 <td>{workshop.description}</td>
+                            </tr>
+                            <tr>
+                                <td>min. aantal deelnemers</td>
+                                <td>{workshop.minParticipants}</td>
+                            </tr>
+                            <tr>
+                                <td>max. aantal deelnemers</td>
+                                <td>{workshop.maxParticipants}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -92,23 +108,23 @@ function WorkshopDetails({id, action}) {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {bookings.map((b, n) => {
+                                {bookings.map((booking, bookingKey) => {
                                     return (
-                                        <tr key={n}>
-                                            <td>{b.student.name}</td>
+                                        <tr key={bookingKey}>
+                                            <td>{booking.student.name}</td>
                                             <td className="presence-wider-btn">
                                                 <button disabled={!isTeacher} type="button"
-                                                        onClick={(e) => togglePresence(e, b.id)}
-                                                        className={b.attended ? "present" : "absent"}>
-                                                    {b.attended ? "present" : "absent"}
+                                                        onClick={(e) => togglePresence(e, booking.id)}
+                                                        className={booking.attended ? "present" : "absent"}>
+                                                    {booking.attended ? "present" : "absent"}
                                                 </button>
                                             </td>
                                             {isTeacher &&
-                                                <td><input type="text" value={b.feedback}
-                                                           onChange={(e) => handleChange(e, b.id)}/></td>
+                                                <td><input type="text" value={booking.feedback}
+                                                           onChange={(e) => handleChange(e, booking.id)}/></td>
                                             }
                                             {!isTeacher &&
-                                                <td>{b.feedback}</td>
+                                                <td>{booking.feedback}</td>
                                             }
                                         </tr>
                                     )

@@ -35,7 +35,6 @@ function AddStudent() {
                 <span>vul alle velden in om een leerling toe te voegen</span>
             }
 
-            <div className="page-container">
                 <form onSubmit={addStudent} className="add-student">
                     <section>
                         <label htmlFor="student-name">
@@ -74,8 +73,6 @@ function AddStudent() {
                         <button type="submit">Voeg toe</button>
                     </section>
                 </form>
-
-            </div>
         </>
     );
 }

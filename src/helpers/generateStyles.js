@@ -14,13 +14,6 @@ function generateStyles(size, offset, spread) {
     let styles = "";
     const darkColors = generateHslColors(50, 50, 0.9, size + spread);
     const liteColors = generateHslColors(50, 75, 1, size + spread);
-    // console.log(darkColors);
-
-
-    // TODO :
-    // als er meer dan 9 a 10 kleuren nodig zijn (of bij een hoge spread), dan is het lastiger om de kleuren van elkaar te onderscheiden.
-    // misschien is het handig om een minimum "delta" in te stellen ...
-    // of misschien is het handig om dan automatisch het kleuren spectrum een 2e keer te doorlopen met een andere alpha of lightness ....
 
     darkColors.map((color, index) => {
         if (index <= size) {
@@ -39,7 +32,6 @@ function generateStyles(size, offset, spread) {
         return true;
     });
 
-    // console.log(styles);
     const styleSheet = document.createElement("style");
     styleSheet.innerText = styles;
     document.head.appendChild(styleSheet);

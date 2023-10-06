@@ -26,7 +26,7 @@
 
     /* added by me */
     --orange: hsl(30, 100%, 51%);   /* ff8205 */
-    --very-light-blue: #e6f3fe; /* from magister website */
+    --very-light-blue: #e6f3fe;     /* also from magister website */
 }
 
 body {
@@ -41,6 +41,21 @@ h4,
 h5,
 h6 {
     color: var(--primary-text-color);
+}
+
+a,
+a:visited,
+a:active {
+    color: var(--primary-text-color);
+}
+
+a:hover {
+    color: var(--secondary-text-color);
+}
+
+article {
+    background-color: var(--background-10);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 table {
@@ -81,20 +96,17 @@ form.signin > section {
     background-color: var(--background-12);
 }
 
-form.add-workshop {
-    /*background-color: inherit;*/
-}
-
 form section.submit-error {
     background-color: var(--orange);
 }
 
-button[disabled] {
-    background-color: var(--background-4);
+button {
+    background-color: var(--background-10);
+    color: var(--background-2);
 }
 
-button[disabled]:hover {
-    cursor: not-allowed;
+button[disabled] {
+    background-color: var(--background-4);
 }
 
 .present {
@@ -103,32 +115,6 @@ button[disabled]:hover {
 
 .absent {
     color: var(--orange);
-}
-
-
-.red {
-    color: red;
-}
-
-.green {
-    color: green;
-}
-
-.blue {
-    color: blue;
-}
-
-.purple {
-    color: purple;
-}
-
-.orange {
-    color: darkorange;
-}
-
-button {
-    background-color: var(--background-10);
-    color: var(--background-2);
 }
 
 /* -------------------- FONTS ----------------------------------------------------------- */
@@ -216,7 +202,7 @@ td.presence-wider-btn > button {
     width: 9rem;
 }
 
-.image-preview {
+img.image-preview {
     max-height: 49vh;
 }
 
@@ -240,6 +226,14 @@ article {
     background-color: yellow;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline-color: var(--orange);
+    outline-width: 10px;
+}
+
 form, form > section {
     border-radius: 16px;
 }
@@ -252,7 +246,7 @@ form label {
     margin: 4px 0;
 }
 
-form input,
+form input, input,
 form select {
     width: 100%;
     padding: 4px 8px;
@@ -306,7 +300,7 @@ form label {
     margin: 4px 0;
 }
 
-form input,
+form input, input,
 form select {
     width: 100%;
     padding: 4px 8px;
@@ -333,11 +327,15 @@ button + button {
     margin-left: 8px;
 }
 
+/* -------------------- A LITTLE EYE-CANDY ---------------------------------------------- */
+
 button:hover {
     cursor: pointer;
 }
 
-/* -------------------- A LITTLE EYE-CANDY ---------------------------------------------- */
+button[disabled]:hover {
+    cursor: not-allowed;
+}
 
 .loading-icon {
     position: relative;

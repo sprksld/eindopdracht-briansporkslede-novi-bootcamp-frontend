@@ -5,7 +5,7 @@ import WhoAmI from "../components/WhoAmI";
 import {useParams, useSearchParams} from "react-router-dom";
 import ProcessReservations from "../components/planner/ProcessReservations";
 import WorkshopsToChooseFrom from "../components/student/WorkshopsToChooseFrom";
-import WorkshopDetails from "../components/mentor/WorkshopDetails";
+import WorkshopDetails from "../components/WorkshopDetails";
 
 function Workshops() {
     const {auth, isAuth, user: {username, email, authorities, isPlanner, isMentor, isStudent, isTeacher}} = useContext(AuthContext);
@@ -35,8 +35,7 @@ function Workshops() {
             }
             {isStudent &&
                 <>
-                    <h2>nog niet af</h2>
-                    <WorkshopsToChooseFrom/>
+                    <h2>nothing here, yet</h2>
                 </>
             }
         </>
